@@ -1,8 +1,8 @@
 package com.bonc.java;
-
+import org.junit.runner.notification.RunListener.ThreadSafe;
 //import javax.annotation.concurrent.ThreadSafe;
 
-//@ThreadSafe
+@ThreadSafe
 public class RingStringBuffer {
 	private Integer size;
 
@@ -24,13 +24,13 @@ public class RingStringBuffer {
 	 */
 	public void put(String input){
 
-		//»ñÈ¡ÒªÌí¼Ó×Ö·û´®µÄ³¤¶È
+		//è·å–è¦æ·»åŠ å­—ç¬¦ä¸²çš„é•¿åº¦
 		int inputLength = input.length();
 
-		//µÃµ½×Ü³¤¶È
+		//å¾—åˆ°æ€»é•¿åº¦
 		int totalLength = inputLength+sb.length();
 
-		//ÅĞ¶Ï
+		//åˆ¤æ–­
 		if(totalLength>size){
 			size += size;
 
@@ -50,23 +50,23 @@ public class RingStringBuffer {
 	 */
 	public String get(int length) throws Exception{
 
-		//ÅĞ¶ÏgetµÄ³¤¶ÈÊÇ·ñ´óÓÚ×Ö·û»º³åÇøµÄ³¤¶È
+		//åˆ¤æ–­getçš„é•¿åº¦æ˜¯å¦å¤§äºå­—ç¬¦ç¼“å†²åŒºçš„é•¿åº¦
 		if(length>sb.length()){
 
 			throw new Exception();
 
 		}else{
 
-			//»ñÈ¡µ½ÒªgetµÄ×Ö·û´®
+			//è·å–åˆ°è¦getçš„å­—ç¬¦ä¸²
 			String getstring = sb.substring(0, length);
 
-			//»ñÈ¡Ã»ÓĞgetµÄ×Ö·û´®
+			//è·å–æ²¡æœ‰getçš„å­—ç¬¦ä¸²
 			String substring = sb.substring(length, sb.length());
 
-			//Çå¿Õsb»º³åÇø
+			//æ¸…ç©ºsbç¼“å†²åŒº
 			sb.delete(0, sb.length());
 
-			//½«getµ½µÄ×Ö·ûÌí¼Óµ½»º³åÇø
+			//å°†getåˆ°çš„å­—ç¬¦æ·»åŠ åˆ°ç¼“å†²åŒº
 			sb.append(substring);
 
 			return getstring;
